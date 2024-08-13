@@ -1,0 +1,132 @@
+/* reset styles */
+* {
+    box-sizing: border-box;
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+h1,h2,h3,h4 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+ul[role='list'], ol[role='list']{
+    list-style: none; 
+}
+
+/* custom styles */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f4f4f4;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 70px 1fr;
+
+    grid-template-areas:
+        "header header header header header"
+        "sidebar main main main main";
+}
+
+header {
+    grid-area: header;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+}
+
+nav {
+    grid-area: nav;
+    background-color: #332;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+sidebar {
+    grid-area: sidebar;
+    /* background-color: #334; */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* align-items: center; */
+}
+
+main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+#title-sidebar {
+    /* font-size: 2rem;
+    margin-bottom: 1; */
+    /* padding-left: 3%; */
+    color: #333;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 1;
+    padding-left: 3%;
+}
+.browser-city {
+    font-size: 1.5rem;
+    margin-bottom: 1;
+    padding-right: 3%;
+}
+
+.sidebar {
+    padding-top: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.earthquake-card-sidebar {
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
