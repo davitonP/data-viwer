@@ -13,8 +13,8 @@
         <h2 class="title">Visualizador de sismos - prototipo</h2>
         <div class="browser-city">
             <input type="text" id="input" placeholder="Buscar por Ciudad">
-            <button id="btn">Buscar</button>
-            <button type="button">Seleccionar Area</button>
+            <button id="btn" type="button" onclick="sectionNotAvailable()">Buscar</button>
+            <button type="button" onclick="sectionNotAvailable()">Seleccionar Area</button>
         </div>
     </header>
     <sidebar>
@@ -36,19 +36,74 @@
             <br>
             <div>
                 <ul id="earthquake-list">
-                    <ol class="earthquake-card-sidebar">
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
                         <h4>Fecha: 2021-06-01</h4>
-                        <p>Ubicación: 10 km al norte de San José</p>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
                         <p>Magnitud: 5.6</p>
                     </ol>
-                    <ol class="earthquake-card-sidebar" marker="none">
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
                         <h4>Fecha: 2021-06-01</h4>
-                        <p>Ubicación: 10 km al norte de San José</p>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
                         <p>Magnitud: 5.6</p>
                     </ol>
-                    <ol class="earthquake-card-sidebar">
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
                         <h4>Fecha: 2021-06-01</h4>
-                        <p>Ubicación: 10 km al norte de San José</p>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
                         <p>Magnitud: 5.6</p>
                     </ol>
                 </ul>
@@ -58,9 +113,9 @@
     <main>
         <div id="map"></div> 
     </main>
-    <!-- <footer>
+    <footer>
         <p>Footer</p>
-    </footer> -->
+    </footer>
 </body>
 <script src="L.KML.js"></script>
 <script src="main.js"></script>

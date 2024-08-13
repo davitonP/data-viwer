@@ -8,7 +8,7 @@
 }
 
 body {
-  min-height: 100dvh;
+  max-height: 100dvh;
 }
 
 h1,h2,h3,h4 {
@@ -34,11 +34,12 @@ body {
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 70px 1fr;
+    grid-template-rows: 70px 12fr 70px;
 
     grid-template-areas:
         "header header header header header"
-        "sidebar main main main main";
+        "sidebar main main main main"
+        "footer footer footer footer footer";
 }
 
 header {
@@ -68,6 +69,7 @@ sidebar {
     display: flex;
     flex-direction: column;
     justify-content: start;
+    overflow: scroll;
     /* align-items: center; */
 }
 
@@ -82,12 +84,11 @@ main {
 
 footer {
     grid-area: footer;
-    background-color: #333;
-    color: #fff;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #333;
+    content: normal;
 }
 
 #map {
@@ -119,6 +120,8 @@ footer {
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
+    height: 100%;
+    overflow: scroll;
 }
 
 .earthquake-card-sidebar {
