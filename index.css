@@ -8,7 +8,8 @@
 }
 
 body {
-  max-height: 100dvh;
+    /* min-height: 100dvh;
+    max-height: 100dvh; */
 }
 
 h1,h2,h3,h4 {
@@ -25,8 +26,9 @@ ul[role='list'], ol[role='list']{
 
 /* custom styles */
 
-body {
-    font-family: 'Roboto', sans-serif;
+.container {
+    max-height: 100dvh;
+    font-family: sans-serif,'Roboto';
     font-size: 16px;
     line-height: 1.5;
     color: #333;
@@ -34,12 +36,39 @@ body {
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 70px 12fr 70px;
+    grid-template-rows: 65px 12fr 65px;
 
     grid-template-areas:
         "header header header header header"
         "sidebar main main main main"
         "footer footer footer footer footer";
+}
+
+@media (max-width: 768px) {
+    .container {
+        height: 100vh;
+        grid-template-columns: minmax(auto, 250px) 1fr;
+        grid-template-rows: 65px 1fr 65px;
+
+        grid-template-areas:
+            "sidebar header"
+            "sidebar main"
+            "sidebar footer";
+        margin: 0;
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+        background-color: red;
+        transform: translateX(-100%);
+        transition: 200ms ease;
+        z-index: 1;
+        position: relative;
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(0%);
+      }
 }
 
 header {
@@ -62,15 +91,23 @@ nav {
     align-items: center;
 }
 
-sidebar {
+.sidebar {
+    /* visibility: collapse; */
     grid-area: sidebar;
-    /* background-color: #334; */
-    color: #fff;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: start;
     overflow: scroll;
-    /* align-items: center; */
+    padding-top: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    height: 100%;
+    overflow: scroll;
+    align-items: center;
 }
 
 main {
@@ -96,9 +133,6 @@ footer {
     height: 100%;
 }
 #title-sidebar {
-    /* font-size: 2rem;
-    margin-bottom: 1; */
-    /* padding-left: 3%; */
     color: #333;
 }
 
@@ -111,17 +145,6 @@ footer {
     font-size: 1.5rem;
     margin-bottom: 1;
     padding-right: 3%;
-}
-
-.sidebar {
-    padding-top: 2rem;
-    padding-left: 0;
-    padding-right: 0;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    height: 100%;
-    overflow: scroll;
 }
 
 .earthquake-card-sidebar {

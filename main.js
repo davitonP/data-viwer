@@ -38,3 +38,10 @@ function moveMapTo(lat=31.8, long=-116, zoom=12) {
 function sectionNotAvailable() {
     alert('Funcionalidad no disponible');
 }
+
+function showSidebar() {
+    document.getElementById('sidebar').style.display = 'block';
+}
+function hideSidebar() {
+    document.getElementById('sidebar').style.display = 'none';
+}
