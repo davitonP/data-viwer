@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="index.css">
 
     <link rel="stylesheet" href="https://unpkg.com/@bopen/leaflet-area-selection@0.6.1/dist/index.css" />
-    <script src="https://unpkg.com/@bopen/leaflet-area-selection@0.6.1/dist/index.umd.js"></script>
+    
 </head>
 
 <body>
     <header>
-        <h2 class="title">Visualizador de sismos - prototipo</h2>
+        <h2 class="title">Visualizador de Fallas - prototipo</h2>
         <div class="browser-city">
             <input type="text" id="input" placeholder="Buscar por Ciudad">
             <button id="btn" type="button" onclick="sectionNotAvailable()">Buscar</button>
@@ -26,7 +26,7 @@
     </header>
     <sidebar>
         <div class="sidebar">
-            <h3 id="title-sidebar">Últimos sismos registrados</h3>
+            <h3 id="title-sidebar">Fallas Activas</h3>
             <select name="last-earthquake" id="last-earthquake">
                 <option value="1">1 dia</option>
                 <option value="5">1 semana</option>
@@ -44,74 +44,79 @@
             <div>
                 <ul id="earthquake-list">
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 20</h4>
                         <p>Ubicación: 10 km al norte de Ensenada</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 12</h4>
                         <p>Ubicación: 10 km al norte de Mexicali</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 35</h4>
                         <p>Ubicación: 10 km al norte de Tijuana</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 20</h4>
                         <p>Ubicación: 10 km al norte de Ensenada</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 12</h4>
                         <p>Ubicación: 10 km al norte de Mexicali</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 35</h4>
                         <p>Ubicación: 10 km al norte de Tijuana</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 20</h4>
                         <p>Ubicación: 10 km al norte de Ensenada</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 12</h4>
                         <p>Ubicación: 10 km al norte de Mexicali</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 35</h4>
                         <p>Ubicación: 10 km al norte de Tijuana</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 20</h4>
                         <p>Ubicación: 10 km al norte de Ensenada</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 12</h4>
                         <p>Ubicación: 10 km al norte de Mexicali</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 35</h4>
                         <p>Ubicación: 10 km al norte de Tijuana</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 20</h4>
                         <p>Ubicación: 10 km al norte de Ensenada</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                     <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                        <h4>Fecha: 2021-06-01</h4>
+                        <h4>Sismos Registrados : 12</h4>
                         <p>Ubicación: 10 km al norte de Mexicali</p>
-                        <p>Magnitud: 5.6</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Sismos Registrados : 35</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Longitud de la Falla: 5.6 Km</p>
                     </ol>
                 </ul>
             </div>
@@ -121,10 +126,12 @@
         <div id="map"></div>
     </main>
     <footer>
-        <p>Footer</p>
+        <p>Prueba con datos generados aleatoriamente</p>
     </footer>
 </body>
 <script src="L.KML.js"></script>
+<script src="leaflet-heat.js"></script>
+<script src="https://unpkg.com/@bopen/leaflet-area-selection@0.6.1/dist/index.umd.js"></script>
 <script src="main.js"></script>
 
 </html>
