@@ -59,7 +59,7 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
 });
 map.addControl(areaSelection);
 
-map.on("click", onMapClick);
+// map.on("click", onMapClick);
 
 // const areaSelection = new window.leafletAreaSelection.DrawAreaSelection();
 
