@@ -8,8 +8,8 @@
 }
 
 body {
-    /* min-height: 100dvh;
-    max-height: 100dvh; */
+  max-height: 100dvh;
+  min-height: 100dvh;
 }
 
 h1,h2,h3,h4 {
@@ -33,15 +33,15 @@ ul[role='list'], ol[role='list']{
     line-height: 1.5;
     color: #333;
     background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 65px 12fr 65px;
-
-    grid-template-areas:
-        "header header header header header"
-        "sidebar main main main main"
-        "footer footer footer footer footer";
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 @media (max-width: 768px) {
@@ -72,11 +72,11 @@ ul[role='list'], ol[role='list']{
 }
 
 header {
-    grid-area: header;
+    height: 8dvh;
     background-color: #333;
     color: #fff;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     background-color: #333;
 }
@@ -91,53 +91,70 @@ nav {
     align-items: center;
 }
 
-.sidebar {
-    /* visibility: collapse; */
-    grid-area: sidebar;
-    background-color: #fff;
+
+sidebar {
+    max-height: 84dvh;
+    /* width: 350px; */
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: start;
     overflow: scroll;
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-left: 0;
     padding-right: 0;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
-    height: 100%;
-    overflow: scroll;
-    align-items: center;
 }
+
+
 
 main {
-    grid-area: main;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4;
-}
-
-footer {
-    grid-area: footer;
-    color: #333;
+    height: 100%;
+    width: 100%;
+    min-width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     content: normal;
+    flex-grow: 1;
 }
+
+footer {
+    height: 6dvh;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    content: normal;
+}
+
+.footer-text {
+    font-size: 1rem;
+    color: #333;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 
 #map {
     width: 100%;
-    height: 100%;
+    height: 84dvh;
 }
 #title-sidebar {
     color: #333;
 }
 
+.btn {
+    /* HIDE BUTTON WEN IS IN DESKTOP */
+    display: none;
+}
+
+
 .title {
-    font-size: 2rem;
+    font-size: 2dvh;
     margin-bottom: 1;
     padding-left: 3%;
 }
@@ -146,6 +163,16 @@ footer {
     margin-bottom: 1;
     padding-right: 3%;
 }
+
+/* .sidebar {
+    padding-top: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    overflow: scroll;
+} */
 
 .earthquake-card-sidebar {
     padding: 1px;
@@ -156,3 +183,25 @@ footer {
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    sidebar {
+        width: 0px;
+    }
+
+    .active {
+        width: 100%;
+    }
+
+    .btn {
+        /* Show button */
+        display: block;
+        background: #333;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+   
+}
