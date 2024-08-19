@@ -10,6 +10,7 @@
 body {
   max-height: 100dvh;
   min-height: 100dvh;
+  font-family: sans-serif, 'Roboto';
 }
 
 h1,h2,h3,h4 {
@@ -154,7 +155,7 @@ footer {
 
 
 .title {
-    font-size: 2dvh;
+    font-size: 2vh;
     margin-bottom: 1;
     padding-left: 3%;
 }
