@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="idex.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <title>Sismos</title>
+</head>
+<body>
+    <div id="sidebar" class="sidebar">
+        <button id="close-sidebar" class="button-2 oscuro" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+          </svg>cerrar</button>
+        <div class="sidebar-header" >
+            <h3 id="title-sidebar">Últimos sismos registrados</h3>
+            <select name="last-earthquake" id="last-earthquake">
+                <option value="1">1 dia</option>
+                <option value="5">1 semana</option>
+                <option value="10">1 mes</option>
+                <option value="20">6 meses</option>
+                <option value="50">1 año</option>
+            </select>
+            <select name="order" id="order">
+                <option value="asc">mas reciente</option>
+                <option value="desc">mas viejo</option>
+                <option value="mag">magnitud</option>
+            </select>
+        </div>
+        <br>
+        <div class="sidebar-content">
+            <ul id="earthquake-list">
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Tijuana</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Ensenada</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+                    <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
+                        <h4>Fecha: 2021-06-01</h4>
+                        <p>Ubicación: 10 km al norte de Mexicali</p>
+                        <p>Magnitud: 5.6</p>
+                    </ol>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <header>
+            <button id="show-sidebar" class="button-2" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                  </svg>
+                  Menu
+            </button>
+            
+            Visualizador de sismos
+        </header>
+        <main>
+            <div id="map""></div>
+        </main>
+        <footer>
+            footer
+        </footer>
+    </div>
+</body>
+<script>
+const sidebar = document.querySelector('#sidebar');
+const showSidebar = document.querySelector('#show-sidebar');
+const closeSidebar = document.querySelector('#close-sidebar');
+
+showSidebar.onclick = () => {
+  sidebar.classList.toggle('collapsed');
+};
+
+closeSidebar.onclick = () => {
+  sidebar.classList.toggle('collapsed');
+};
+var map = L.map('map').setView([32.45, -116.9], 12);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+function moveMapTo(lat=31.8, long=-116, zoom=12) {
+    console.log(lat, long);
+    // map.panTo(new L.LatLng(lat, long));
+    map.setView(new L.LatLng(lat, long), zoom);
+}
+
+function sectionNotAvailable() {
+    alert('Funcionalidad no disponible');
+}
+</script>
+</html>
