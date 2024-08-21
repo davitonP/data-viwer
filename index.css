@@ -65,6 +65,8 @@ ul[role='list'], ol[role='list']{
         transition: 200ms ease;
         z-index: 1;
         position: relative;
+        display: flex;
+        flex-direction: column;
     }
 
     .sidebar.collapsed {
