@@ -5,19 +5,35 @@ var tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 let polygonPoints = null;
 let layersKml = [];
+let layersKmlCache = [];
+let layersMaps = [];
 
 const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
     onPolygonReady: (polygon) => {
         const preview = document.getElementById("polygon");
-        console.log("Polygon ready");
+        // console.log("Polygon ready");
         // console.log(JSON.stringify(polygon.toGeoJSON(3), undefined, 2));
         polygonPoints = polygon.toGeoJSON(3);
-        console.log(polygonPoints);
+        // console.log(polygonPoints);
 
-        let track = searchPlaceMarkersToMap(layersKml[0], polygonPoints.geometry.coordinates[0]);
+        layersMaps.forEach(layer => {
+            map.removeLayer(layer);
+        });
+        layersMaps = [];
 
-        map.addLayer(track);
-        map.fitBounds(track.getBounds());
+        layersKmlCache = [... layersKml];
+
+        let track = searchPlaceMarkersToMap(layersKmlCache[0], polygonPoints.geometry.coordinates[0]);
+        layersMaps.push(track);
+        if (track != null) {
+            map.addLayer(track);
+            map.fitBounds(track.getBounds());
+        } else {
+            alert("No hay puntos en el área seleccionada");
+        }
+
+        // map.addLayer(track);
+        // map.fitBounds(track.getBounds());
         // let points = createRandomPointsInsidePolygon(polygonPoints);
         // console.log(points);
         // addPointsToHeatMap(points);

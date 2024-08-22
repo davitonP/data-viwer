@@ -45,7 +45,8 @@ function convertCoordinatesToList(coordinates) {
 function removePlaceMarkers(doc, placeMark, indexPlacemarkerToRemove) {
 
     for (let i = indexPlacemarkerToRemove.length -1; i >= 0; i--) {
-        doc.removeChild(placeMark[indexPlacemarkerToRemove[i]]);
+        placeMark[indexPlacemarkerToRemove[i]].parentNode.removeChild(placeMark[indexPlacemarkerToRemove[i]]);
+        // doc.removeChild(placeMark[indexPlacemarkerToRemove[i]]);
     }
 
     return doc;
@@ -78,6 +79,11 @@ function searchPlaceMarkersToMap(kml, polygon) {
             indexPlacemarkerToRemove.push(i);
         }
     }
+    console.log(indexPlacemarkerToRemove.lenght);
+    if (indexPlacemarkerToRemove.length === 0) return kml;
+    if (indexPlacemarkerToRemove.length === placeMark.length) return null;
+
+    // console.log(indexPlacemarkerToRemove);
 
     doc = removePlaceMarkers(doc, placeMark, indexPlacemarkerToRemove);
 
