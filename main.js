@@ -12,6 +12,7 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
     onPolygonReady: (polygon) => {
         const preview = document.getElementById("polygon");
         // console.log("Polygon ready");
+        // console.log(layersMaps);
         // console.log(JSON.stringify(polygon.toGeoJSON(3), undefined, 2));
         polygonPoints = polygon.toGeoJSON(3);
         // console.log(polygonPoints);
@@ -21,9 +22,14 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
         });
         layersMaps = [];
 
-        layersKmlCache = [... layersKml];
+        layersKmlCache = JSON.parse(JSON.stringify(layersKml));
 
-        let track = searchPlaceMarkersToMap(layersKmlCache[0], polygonPoints.geometry.coordinates[0]);
+        const parser = new DOMParser();
+            // let kml = parser.parseFromString(kmlText, 'text/xml');
+
+        let layerTrack = parser.parseFromString(layersKmlCache[0], 'text/xml');
+
+        let track = searchPlaceMarkersToMap(layerTrack, polygonPoints.geometry.coordinates[0]);
         layersMaps.push(track);
         if (track != null) {
             map.addLayer(track);
@@ -75,10 +81,12 @@ function addKmlLayer(fileName) {
         .then(response => response.text())
         .then(kmlText => {
             // Create new kml overlay
-            const parser = new DOMParser();
-            let kml = parser.parseFromString(kmlText, 'text/xml');
 
-            layersKml.push(kml);
+            layersKml.push(kmlText);
+            // const parser = new DOMParser();
+            // let kml = parser.parseFromString(kmlText, 'text/xml');
+
+            // layersKml.push(kml);
     });
 }
 

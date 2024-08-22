@@ -59,7 +59,7 @@ function searchPlaceMarkersToMap(kml, polygon) {
 
     let doc = kml.getElementsByTagName('Document')[0];
     let placeMark = kml.getElementsByTagName('Placemark');
-    console.log(placeMark.length);
+    // console.log(placeMark.length);
 
     let index = placeMark.length;
 
@@ -79,8 +79,11 @@ function searchPlaceMarkersToMap(kml, polygon) {
             indexPlacemarkerToRemove.push(i);
         }
     }
-    console.log(indexPlacemarkerToRemove.lenght);
-    if (indexPlacemarkerToRemove.length === 0) return kml;
+    // console.log(indexPlacemarkerToRemove.length);
+    if (indexPlacemarkerToRemove.length === 0) {
+        const track = new L.KML(kml);
+        return track;
+    }
     if (indexPlacemarkerToRemove.length === placeMark.length) return null;
 
     // console.log(indexPlacemarkerToRemove);
