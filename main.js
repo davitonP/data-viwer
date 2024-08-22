@@ -16,27 +16,45 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
         // console.log(JSON.stringify(polygon.toGeoJSON(3), undefined, 2));
         polygonPoints = polygon.toGeoJSON(3);
         // console.log(polygonPoints);
-
-        layersMaps.forEach(layer => {
-            map.removeLayer(layer);
-        });
+        try {
+            layersMaps.forEach(layer => {
+                map.removeLayer(layer);
+            });
+        } catch (error) {
+            console.log("No hay capas para remover");
+        }
+        // layersMaps.forEach(layer => {
+        //     map.removeLayer(layer);
+        // });
         layersMaps = [];
 
         layersKmlCache = JSON.parse(JSON.stringify(layersKml));
 
         const parser = new DOMParser();
-            // let kml = parser.parseFromString(kmlText, 'text/xml');
+        // let kml = parser.parseFromString(kmlText, 'text/xml');
 
-        let layerTrack = parser.parseFromString(layersKmlCache[0], 'text/xml');
-
-        let track = searchPlaceMarkersToMap(layerTrack, polygonPoints.geometry.coordinates[0]);
-        layersMaps.push(track);
-        if (track != null) {
-            map.addLayer(track);
-            map.fitBounds(track.getBounds());
-        } else {
-            alert("No hay puntos en el área seleccionada");
+        for (let i = 0; i < layersKmlCache.length; i++) {
+            let layerTrack = parser.parseFromString(layersKmlCache[i], 'text/xml');
+            let track = searchPlaceMarkersToMap(layerTrack, polygonPoints.geometry.coordinates[0]);
+            layersMaps.push(track);
+            if (track != null) {
+                map.addLayer(track);
+                map.fitBounds(track.getBounds());
+            } else {
+                alert("No hay puntos en el área seleccionada");
+            }
         }
+
+        // let layerTrack = parser.parseFromString(layersKmlCache[0], 'text/xml');
+
+        // let track = searchPlaceMarkersToMap(layerTrack, polygonPoints.geometry.coordinates[0]);
+        // layersMaps.push(track);
+        // if (track != null) {
+        //     map.addLayer(track);
+        //     map.fitBounds(track.getBounds());
+        // } else {
+        //     alert("No hay puntos en el área seleccionada");
+        // }
 
         // map.addLayer(track);
         // map.fitBounds(track.getBounds());
@@ -68,7 +86,7 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
     //     const preview = document.getElementById("polygon");
     //     console.log("Deactivated");
     //     preview.textContent = `Deactivated! Current polygon is:
-    
+
     // ${polygon ? JSON.stringify(polygon.toGeoJSON(3), undefined, 2) : "null"}`;
     // },
     position: "topleft",
@@ -77,7 +95,7 @@ map.addControl(areaSelection);
 
 
 function addKmlLayer(fileName) {
-    fetch('public/kml/'+fileName+'.kml')
+    fetch('public/kml/' + fileName + '.kml')
         .then(response => response.text())
         .then(kmlText => {
             // Create new kml overlay
@@ -87,7 +105,7 @@ function addKmlLayer(fileName) {
             // let kml = parser.parseFromString(kmlText, 'text/xml');
 
             // layersKml.push(kml);
-    });
+        });
 }
 
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {
@@ -101,13 +119,16 @@ function sectionNotAvailable() {
 }
 
 function addPointsToHeatMap(points) {
-    var heat = L.heatLayer(points, { radius: 40 }).addTo(map);
+    var heat = L.heatLayer(points, {
+        radius: 40
+    }).addTo(map);
     // heat.setLatLngs(points);
 }
 
 function showSidebar() {
     document.getElementById('sidebar').style.display = 'block';
 }
+
 function hideSidebar() {
     document.getElementById('sidebar').style.display = 'none';
 }
