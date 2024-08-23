@@ -112,13 +112,8 @@ function addKmlLayer(fileName) {
                 };
                 layersKml.push(kmlObject);
             }
-            
-            // layersKml.push(kmlText);
-            // const parser = new DOMParser();
-            // let kml = parser.parseFromString(kmlText, 'text/xml');
-
-            // layersKml.push(kml);
         });
+    document.getElementById(fileName).classList.toggle('selected');
 }
 
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {

@@ -163,6 +163,17 @@ footer {
     cursor: pointer;
 }
 
+.earthquake-card-sidebar:hover {
+    background-color: #f4f4f4;
+}
+
+.selected {
+    background-color: #a8b8e9;
+}
+.selected:hover {
+    background-color: #a8b8e9;
+}
+ 
 @media (max-width: 768px) {
 
     .container {
