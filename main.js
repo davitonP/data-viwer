@@ -36,51 +36,7 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
                 alert("No hay puntos en el área seleccionada");
             }
         }
-
-        // let layerTrack = parser.parseFromString(layersKmlCache[0], 'text/xml');
-
-        // let track = searchPlaceMarkersToMap(layerTrack, polygonPoints.geometry.coordinates[0]);
-        // layersMaps.push(track);
-        // if (track != null) {
-        //     map.addLayer(track);
-        //     map.fitBounds(track.getBounds());
-        // } else {
-        //     alert("No hay puntos en el área seleccionada");
-        // }
-
-        // map.addLayer(track);
-        // map.fitBounds(track.getBounds());
-        // let points = createRandomPointsInsidePolygon(polygonPoints);
-        // console.log(points);
-        // addPointsToHeatMap(points);
-
-
-        // preview.textContent = JSON.stringify(polygon.toGeoJSON(3), undefined, 2);
-        // preview.scrollTop = preview.scrollHeight;
     },
-    // onPolygonDblClick: (polygon, control, ev) => {
-    //     const geojson = geoJSON(polygon.toGeoJSON(), {
-    //         style: {
-    //             opacity: 0.5,
-    //             fillOpacity: 0.2,
-    //             color: "red",
-    //         },
-    //     });
-    //     geojson.addTo(map);
-    //     control.deactivate();
-    // },
-    // onButtonActivate: () => {
-    //     const preview = document.getElementById("polygon");
-    //     preview.textContent = "Please, draw your polygon";
-    //     console.log("Please, draw your polygon");
-    // },
-    // onButtonDeactivate: (polygon) => {
-    //     const preview = document.getElementById("polygon");
-    //     console.log("Deactivated");
-    //     preview.textContent = `Deactivated! Current polygon is:
-
-    // ${polygon ? JSON.stringify(polygon.toGeoJSON(3), undefined, 2) : "null"}`;
-    // },
     position: "topleft",
 });
 map.addControl(areaSelection);
@@ -100,12 +56,11 @@ function addKmlLayer(fileName) {
     fetch('public/kml/' + fileName + '.kml')
         .then(response => response.text())
         .then(kmlText => {
-            // Create new kml overlay
             let indexOfLayer = indexOfKmlFileInLayers(fileName);
             if (indexOfLayer !== -1) {
                 layersKml.splice(indexOfLayer, 1);
             } else {
-                console.log("Se agrega la capa");
+                // console.log("Se agrega la capa");
                 let kmlObject = {
                     'name': fileName,
                     'kml': kmlText
@@ -118,7 +73,6 @@ function addKmlLayer(fileName) {
 
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {
     console.log(lat, long);
-    // map.panTo(new L.LatLng(lat, long));
     map.setView(new L.LatLng(lat, long), zoom);
 }
 
@@ -130,7 +84,6 @@ function addPointsToHeatMap(points) {
     var heat = L.heatLayer(points, {
         radius: 40
     }).addTo(map);
-    // heat.setLatLngs(points);
 }
 
 function showSidebar() {

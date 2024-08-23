@@ -48,9 +48,7 @@ function removePlaceMarkers(doc, placeMark, indexPlacemarkerToRemove) {
         placeMark[indexPlacemarkerToRemove[i]].parentNode.removeChild(placeMark[indexPlacemarkerToRemove[i]]);
         // doc.removeChild(placeMark[indexPlacemarkerToRemove[i]]);
     }
-
     return doc;
-
 }
 
 function searchPlaceMarkersToMap(kml, polygon) {
@@ -59,7 +57,6 @@ function searchPlaceMarkersToMap(kml, polygon) {
 
     let doc = kml.getElementsByTagName('Document')[0];
     let placeMark = kml.getElementsByTagName('Placemark');
-    // console.log(placeMark.length);
 
     let index = placeMark.length;
 
@@ -79,6 +76,7 @@ function searchPlaceMarkersToMap(kml, polygon) {
             indexPlacemarkerToRemove.push(i);
         }
     }
+    
     // console.log(indexPlacemarkerToRemove.length);
     if (indexPlacemarkerToRemove.length === 0) {
         const track = new L.KML(kml);
@@ -86,26 +84,8 @@ function searchPlaceMarkersToMap(kml, polygon) {
     }
     if (indexPlacemarkerToRemove.length === placeMark.length) return null;
 
-    // console.log(indexPlacemarkerToRemove);
-
     doc = removePlaceMarkers(doc, placeMark, indexPlacemarkerToRemove);
-
-    // placeMark = doc.getElementsByTagName('Placemark');
 
     const track = new L.KML(kml);
     return track;
-
-
-    // let doc = kml.getElementsByTagName('Document')[0];
-    // let placeMark = kml.getElementsByTagName('Placemark');
-    // console.log(placeMark.length);
-    // let index = placeMark.length / 2;
-
-    // for (let i = 0; i < index; i++) {
-    //     doc.removeChild(placeMark[0]);
-    //     console.log('removed ' + i);
-    // }
-    // placeMark = doc.getElementsByTagName('Placemark');
-    // const track = new L.KML(kml);
-    // return track;
 }
