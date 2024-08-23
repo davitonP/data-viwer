@@ -10,10 +10,6 @@ let layersMaps = [];
 
 const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
     onPolygonReady: (polygon) => {
-        const preview = document.getElementById("polygon");
-        // console.log("Polygon ready");
-        // console.log(layersMaps);
-        // console.log(JSON.stringify(polygon.toGeoJSON(3), undefined, 2));
         polygonPoints = polygon.toGeoJSON(3);
         // console.log(polygonPoints);
         try {
@@ -23,18 +19,14 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
         } catch (error) {
             console.log("No hay capas para remover");
         }
-        // layersMaps.forEach(layer => {
-        //     map.removeLayer(layer);
-        // });
         layersMaps = [];
 
         layersKmlCache = JSON.parse(JSON.stringify(layersKml));
 
         const parser = new DOMParser();
-        // let kml = parser.parseFromString(kmlText, 'text/xml');
 
         for (let i = 0; i < layersKmlCache.length; i++) {
-            let layerTrack = parser.parseFromString(layersKmlCache[i], 'text/xml');
+            let layerTrack = parser.parseFromString(layersKmlCache[i]['kml'], 'text/xml');
             let track = searchPlaceMarkersToMap(layerTrack, polygonPoints.geometry.coordinates[0]);
             layersMaps.push(track);
             if (track != null) {
@@ -93,14 +85,35 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
 });
 map.addControl(areaSelection);
 
+function indexOfKmlFileInLayers(fileName) {
+    let result = -1;
+    layersKml.forEach((layer, index) => {
+        if (layer['name'] === fileName) {
+            result = index;
+        }
+    });
+    return result;
+}
+
 
 function addKmlLayer(fileName) {
     fetch('public/kml/' + fileName + '.kml')
         .then(response => response.text())
         .then(kmlText => {
             // Create new kml overlay
-
-            layersKml.push(kmlText);
+            let indexOfLayer = indexOfKmlFileInLayers(fileName);
+            if (indexOfLayer !== -1) {
+                layersKml.splice(indexOfLayer, 1);
+            } else {
+                console.log("Se agrega la capa");
+                let kmlObject = {
+                    'name': fileName,
+                    'kml': kmlText
+                };
+                layersKml.push(kmlObject);
+            }
+            
+            // layersKml.push(kmlText);
             // const parser = new DOMParser();
             // let kml = parser.parseFromString(kmlText, 'text/xml');
 
