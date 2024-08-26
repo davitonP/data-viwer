@@ -9,7 +9,7 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="index.css">
 
     <link rel="stylesheet" href="https://unpkg.com/@bopen/leaflet-area-selection@0.6.1/dist/index.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,7 +20,7 @@
     <div class="flex-column">
         <nav class="navbar bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                <a onclick="openSidebar()" class="navbar-brand" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                     aria-controls="offcanvasExample" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                         class="bi bi-list" viewBox="0 0 16 16">
@@ -31,247 +31,90 @@
                 </a>
             </div>
         </nav>
-        <main class="vh-100">
-            <div id="map" class="w-100 h-100"></div>
-        </main>
     </div>
-
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Fallas Activas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body ps-0 pe-0">
-            <div class="ps-4 pe-4">
-                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images,
-                lists,
-                etc.
-            </div>
-            <div class="list-group ">
-                <a id="Fallas_California" onclick="addKmlLayer('Fallas_California')" class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas en California</h5>
-                        <small class="text-muted">2020-2024</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas durante el periodo 2020- 2024 en el estado de California USA</p>
-                    <small>Datos proporcionados por USA institute.</small>
-                </a>
-                <a id="FallasBC_localesBien" onclick="addKmlLayer('FallasBC_localesBien')" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas Baja California Mx</h5>
-                        <small class="text-muted">2022-2023</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas en Baja California México.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Sismos 2024</h5>
-                        <small class="text-muted">2024</small>
-                    </div>
-                    <p class="mb-1">Ubicaciones de los últimos sismos en BC.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas en California</h5>
-                        <small class="text-muted">2020-2024</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas durante el periodo 2020- 2024 en el estado de California USA</p>
-                    <small>Datos proporcionados por USA institute.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas Baja California Mx</h5>
-                        <small class="text-muted">2022-2023</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas en Baja California México.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Sismos 2024</h5>
-                        <small class="text-muted">2024</small>
-                    </div>
-                    <p class="mb-1">Ubicaciones de los últimos sismos en BC.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas en California</h5>
-                        <small class="text-muted">2020-2024</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas durante el periodo 2020- 2024 en el estado de California USA</p>
-                    <small>Datos proporcionados por USA institute.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas Baja California Mx</h5>
-                        <small class="text-muted">2022-2023</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas en Baja California México.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Sismos 2024</h5>
-                        <small class="text-muted">2024</small>
-                    </div>
-                    <p class="mb-1">Ubicaciones de los últimos sismos en BC.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas en California</h5>
-                        <small class="text-muted">2020-2024</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas durante el periodo 2020- 2024 en el estado de California USA</p>
-                    <small>Datos proporcionados por USA institute.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas Baja California Mx</h5>
-                        <small class="text-muted">2022-2023</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas en Baja California México.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Sismos 2024</h5>
-                        <small class="text-muted">2024</small>
-                    </div>
-                    <p class="mb-1">Ubicaciones de los últimos sismos en BC.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas en California</h5>
-                        <small class="text-muted">2020-2024</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas durante el periodo 2020- 2024 en el estado de California USA</p>
-                    <small>Datos proporcionados por USA institute.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Fallas Baja California Mx</h5>
-                        <small class="text-muted">2022-2023</small>
-                    </div>
-                    <p class="mb-1">Fallas encontradas en Baja California México.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Sismos 2024</h5>
-                        <small class="text-muted">2024</small>
-                    </div>
-                    <p class="mb-1">Ubicaciones de los últimos sismos en BC.</p>
-                    <small class="text-muted">Datos proporcionados por CICESE.</small>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <header>
-        <button class="btn" onclick="openSidebar()"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-                viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg></button>
-        <h1 class="title">Visualizador de Fallas - prototipo</h1>
-        </div>
-    </header>
-    <div class="container">
+    <div class="main-content">
         <sidebar class="sidebar">
             <div>
                 <h3 id="title-sidebar">Fallas Activas</h3>
-                <select name="last-earthquake" id="last-earthquake">
-                    <option value="1">1 dia</option>
-                    <option value="5">1 semana</option>
-                    <option value="10">1 mes</option>
-                    <option value="20">6 meses</option>
-                    <option value="50">1 año</option>
-                </select>
-                <select name="order" id="order">
-                    <option value="asc">mas reciente</option>
-                    <option value="desc">mas viejo</option>
-                    <option value="mag">magnitud</option>
-                </select>
-                <br>
-                <br>
+                <div class="selectors">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="1">1 dia</option>
+                        <option value="5">1 semana</option>
+                        <option value="10">1 mes</option>
+                        <option value="20">6 meses</option>
+                        <option value="50">1 año</option>
+                    </select>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="asc">mas reciente</option>
+                        <option value="desc">mas viejo</option>
+                        <option value="mag">magnitud</option>
+                    </select>
+                </div>
                 <div>
-                    <ul id="earthquake-list">
-                        <ol id="Fallas_California" class="earthquake-card-sidebar"
-                            onclick="addKmlLayer('Fallas_California')">
-                            <h4>Fallas en California</h4>
-                            <p>Ubicación: 10 km al norte de Ensenada</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol id="FallasBC_localesBien" class="earthquake-card-sidebar"
-                            onclick="addKmlLayer('FallasBC_localesBien')">
-                            <h4>Fallas Locales</h4>
-                            <p>Ubicación: 10 km al norte de Mexicali</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol id="Historico_5" class="earthquake-card-sidebar" onclick="addKmlLayer('Historico_5')">
-                            <h4>Datos Históricos</h4>
-                            <p>Ubicación: 10 km al norte de Tijuana</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                            <h4>Sismos Registrados : 20</h4>
-                            <p>Ubicación: 10 km al norte de Ensenada</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                            <h4>Sismos Registrados : 12</h4>
-                            <p>Ubicación: 10 km al norte de Mexicali</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
-                            <h4>Sismos Registrados : 35</h4>
-                            <p>Ubicación: 10 km al norte de Tijuana</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                            <h4>Sismos Registrados : 20</h4>
-                            <p>Ubicación: 10 km al norte de Ensenada</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                            <h4>Sismos Registrados : 12</h4>
-                            <p>Ubicación: 10 km al norte de Mexicali</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
-                            <h4>Sismos Registrados : 35</h4>
-                            <p>Ubicación: 10 km al norte de Tijuana</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(31.8, -116.6, 12)">
-                            <h4>Sismos Registrados : 20</h4>
-                            <p>Ubicación: 10 km al norte de Ensenada</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.65, -115.5, 12)">
-                            <h4>Sismos Registrados : 12</h4>
-                            <p>Ubicación: 10 km al norte de Mexicali</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
-                        <ol class="earthquake-card-sidebar" onclick="moveMapTo(32.45, -116.9, 12)">
-                            <h4>Sismos Registrados : 35</h4>
-                            <p>Ubicación: 10 km al norte de Tijuana</p>
-                            <p>Longitud de la Falla: 5.6 Km</p>
-                        </ol>
+
+                    <ul class="list-group">
+                        <li id="Fallas_California" class="list-group-item" onclick="addKmlLayer('Fallas_California')" >
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Fallas de California</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Ensenada.</p>
+                                  <p class="card-text text-start text-wrap">Longitud de la Falla: 5.6 Km.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="FallasBC_locales" class="list-group-item"onclick="addKmlLayer('FallasBC_locales')">
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Fallas Locales</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Mexicali.</p>
+                                  <p class="card-text text-start text-wrap">Longitud de la Falla: 5.6 Km.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="Historico_5" class="list-group-item" onclick="addKmlLayer('Historico_5')">
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Datos históricos</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Tijuana.</p>
+                                  <p class="card-text text-start text-wrap">Longitud de la Falla: 5.6 Km.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" onclick="moveMapTo(31.8, -116.6, 12)">
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Fallas de California</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Ensenada.</p>
+                                  <p class="card-text text-start text-wrap">Longitud de la Falla: 5.6 Km.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" onclick="moveMapTo(32.65, -115.5, 12)">
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Fallas Locales</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Mexicali.</p>
+                                  <p class="card-text text-start text-wrap">Longitud de la Falla: 5.6 Km.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" onclick="moveMapTo(32.45, -116.9, 12)">
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Datos históricos</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Tijuana.</p>
+                                  <p class="card-text text-start text-wrap">Longitud de la Falla: 5.6 Km.</p>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </sidebar>
-        <!-- <main>
+        <main>
             <div id="map"></div>
-        </main> -->
+        </main>
     </div>
-    <footer>
-        <p class="footer-text">Prueba con datos de California y Baja California</p>
-    </footer>
 </body>
 <script src="L.KML.js"></script>
 <script src="leaflet-heat.js"></script>
