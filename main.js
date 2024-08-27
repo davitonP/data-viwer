@@ -107,7 +107,7 @@ function addKmlLayerComplete(fileName){
             // isLayerIn.push(fileName);
             // map.addLayer(track);
         });
-        // document.getElementById(fileName).classList.toggle('selected');
+        document.getElementById(fileName).classList.toggle('selected');
 }
 
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {
