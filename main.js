@@ -15,6 +15,7 @@ let layersKml = [];
 let layersKmlCache = [];
 let layersMaps = [];
 let isLayerIn = [];
+let isLayerInCompl = [];
 
 const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
     onPolygonReady: (polygon) => {
@@ -87,17 +88,21 @@ function addKmlLayerComplete(fileName){
     fetch('public/kml/' + fileName + '.kml')
         .then(response => response.text())
         .then(kmlText => {
-            const parser = new DOMParser();
-            let kml = parser.parseFromString(kmlText, 'text/xml');
-            let track = new L.KML(kml);
+            console.log(isLayerIn);
             if (isLayerIn.includes(fileName)) {
-                map.removeLayer(track);
                 let ind = isLayerIn.indexOf(fileName);
+                map.removeLayer(isLayerInCompl[ind]);
                 isLayerIn.splice(ind,1);
+                isLayerInCompl.splice(ind,1);
                 console.log("lo qito");
             } else {
+                const parser = new DOMParser();
+                let kml = parser.parseFromString(kmlText, 'text/xml');
+                let track = new L.KML(kml);
                 isLayerIn.push(fileName);
+                isLayerInCompl.push(track);
                 map.addLayer(track);
+                // isLayerIn.push(track);
             }
             // isLayerIn.push(fileName);
             // map.addLayer(track);
