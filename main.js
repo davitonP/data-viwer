@@ -70,6 +70,18 @@ function indexOfKmlFileInLayers(fileName) {
     return result;
 }
 
+function indexOfKmInArray(fileName, array) {
+    let result = -1;
+    console.log(array);
+    console.log(fileName);
+    array.forEach((layer, index) => {
+        if (layer['name'] === fileName) {
+            result = index;
+        }
+    });
+    return result;
+}
+
 function addKmlLayer(fileName) {
     fetch('public/kml/' + fileName + '.kml')
         .then(response => response.text())
@@ -120,15 +132,27 @@ function addKmlLayerComplete(fileName) {
 }
 
 function addKmzComplete(fileName) {
-    let kmz = L.kmzLayer().addTo(map);
-    kmz.on('load', function (e) {
-        control.addOverlay(e.layer, e.name);
-        console.log(e);
-    });
-    // kmz.load('public/kml/Fallas.kmz');
-    kmz.load('public/kml/' + fileName + '.kmz');
-    console.log(kmz)
-    kmzLayersList.push(kmz);
+    let ind = indexOfKmInArray(fileName, kmzLayersList)
+    console.log(ind);
+    if (ind == -1) {
+        let kmz = L.kmzLayer().addTo(map);
+        kmz.on('load', function (e) {
+            // control.addOverlay(e.layer, e.name);
+            // console.log(e);
+        });
+        kmz.load('public/kml/' + fileName + '.kmz');
+        kmzLayersList.push({
+            "name": fileName,
+            "kml": kmz
+        });
+    } else {
+        let layer = kmzLayersList[ind].kml;
+        map.removeLayer(layer)
+        kmzLayersList.splice(ind, 1);
+    }
+
+    // console.log(kmz)
+    
     document.getElementById(fileName).classList.toggle('selected');
 }
 
