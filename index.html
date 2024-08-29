@@ -51,8 +51,25 @@
                     </select>
                 </div>
                 <div>
-
                     <ul class="list-group">
+                        <li id="Fallas" class="list-group-item" onclick="addKmzComplete('Fallas')">
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Fallas</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Tijuana.</p>
+                                  <p class="card-text text-start text-wrap">Agregar todo</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="Sismos" class="list-group-item" onclick="addKmzComplete('Sismos')">
+                            <div class="">
+                                <div class="card-body">
+                                  <h5 class="card-title">Sismos</h5>
+                                  <p class="card-text text-start text-wrap mb-0">Ubicación: 10 km al norte de Tijuana.</p>
+                                  <p class="card-text text-start text-wrap">Agregar todo</p>
+                                </div>
+                            </div>
+                        </li>
                         <li id="Fallas_California" class="list-group-item" onclick="addKmlLayer('Fallas_California')" >
                             <div class="">
                                 <div class="card-body">
@@ -107,6 +124,7 @@
                                 </div>
                             </div>
                         </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -120,6 +138,7 @@
 <script src="leaflet-heat.js"></script>
 <script src="https://unpkg.com/@bopen/leaflet-area-selection@0.6.1/dist/index.umd.js"></script>
 <script src="kmlfinder.js"></script>
+<script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
 </script>

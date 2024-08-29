@@ -10,6 +10,16 @@ var tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // 	ext: 'png'
 // }).addTo(map);
 
+
+// kmz.load('public/kml/Sismos.kmz');
+// kmz.load('https://raruto.github.io/leaflet-kmz/examples/regions.kmz');
+// kmz.load('https://raruto.github.io/leaflet-kmz/examples/capitals.kmz');
+// kmz.load('https://raruto.github.io/leaflet-kmz/examples/globe.kmz');
+
+var control = L.control.layers(null, null, {
+    collapsed: false
+}).addTo(map);
+let kmzLayersList = [];
 let polygonPoints = null;
 let layersKml = [];
 let layersKmlCache = [];
@@ -79,7 +89,7 @@ function addKmlLayer(fileName) {
     document.getElementById(fileName).classList.toggle('selected');
 }
 
-function addKmlLayerComplete(fileName){
+function addKmlLayerComplete(fileName) {
     // if (isLayerIn.includes(fileName)) {
     //     return
     // }
@@ -91,8 +101,8 @@ function addKmlLayerComplete(fileName){
             if (isLayerIn.includes(fileName)) {
                 let ind = isLayerIn.indexOf(fileName);
                 map.removeLayer(isLayerInCompl[ind]);
-                isLayerIn.splice(ind,1);
-                isLayerInCompl.splice(ind,1);
+                isLayerIn.splice(ind, 1);
+                isLayerInCompl.splice(ind, 1);
                 console.log("lo qito");
             } else {
                 const parser = new DOMParser();
@@ -106,7 +116,19 @@ function addKmlLayerComplete(fileName){
             // isLayerIn.push(fileName);
             // map.addLayer(track);
         });
-        document.getElementById(fileName).classList.toggle('selected');
+    document.getElementById(fileName).classList.toggle('selected');
+}
+
+function addKmzComplete(fileName) {
+    let kmz = L.kmzLayer().addTo(map);
+    kmz.on('load', function (e) {
+        control.addOverlay(e.layer, e.name);
+        console.log(e);
+    });
+    // kmz.load('public/kml/Fallas.kmz');
+    kmz.load('public/kml/' + fileName + '.kmz');
+    console.log(kmz)
+    kmzLayersList.push(kmz);
 }
 
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {
