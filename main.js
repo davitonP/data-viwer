@@ -1,12 +1,21 @@
-var map = L.map("map").setView([32.45, -116.9], 12);
+var map = L.map("map").setView([32.45, -116.9], 10);
 var tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
+
+// var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
+// 	minZoom: 0,
+// 	maxZoom: 20,
+// 	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+// 	ext: 'png'
+// }).addTo(map);
 
 let polygonPoints = null;
 let layersKml = [];
 let layersKmlCache = [];
 let layersMaps = [];
+let isLayerIn = [];
+let isLayerInCompl = [];
 
 const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
     onPolygonReady: (polygon) => {
@@ -51,7 +60,6 @@ function indexOfKmlFileInLayers(fileName) {
     return result;
 }
 
-
 function addKmlLayer(fileName) {
     fetch('public/kml/' + fileName + '.kml')
         .then(response => response.text())
@@ -71,16 +79,34 @@ function addKmlLayer(fileName) {
     document.getElementById(fileName).classList.toggle('selected');
 }
 
-function addKmlLayerH(fileName) {
+function addKmlLayerComplete(fileName){
+    // if (isLayerIn.includes(fileName)) {
+    //     return
+    // }
+    // isLayerIn.push(fileName);
     fetch('public/kml/' + fileName + '.kml')
         .then(response => response.text())
         .then(kmlText => {
-            const parser = new DOMParser();
-            let kml = parser.parseFromString(kmlText, 'text/xml');
-            let track = new L.KML(kml)
-            map.addLayer(track);
+            console.log(isLayerIn);
+            if (isLayerIn.includes(fileName)) {
+                let ind = isLayerIn.indexOf(fileName);
+                map.removeLayer(isLayerInCompl[ind]);
+                isLayerIn.splice(ind,1);
+                isLayerInCompl.splice(ind,1);
+                console.log("lo qito");
+            } else {
+                const parser = new DOMParser();
+                let kml = parser.parseFromString(kmlText, 'text/xml');
+                let track = new L.KML(kml);
+                isLayerIn.push(fileName);
+                isLayerInCompl.push(track);
+                map.addLayer(track);
+                // isLayerIn.push(track);
+            }
+            // isLayerIn.push(fileName);
+            // map.addLayer(track);
         });
-    document.getElementById(fileName).classList.toggle('selected');
+        document.getElementById(fileName).classList.toggle('selected');
 }
 
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {
