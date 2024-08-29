@@ -129,6 +129,7 @@ function addKmzComplete(fileName) {
     kmz.load('public/kml/' + fileName + '.kmz');
     console.log(kmz)
     kmzLayersList.push(kmz);
+    document.getElementById(fileName).classList.toggle('selected');
 }
 
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {
