@@ -71,6 +71,18 @@ function addKmlLayer(fileName) {
     document.getElementById(fileName).classList.toggle('selected');
 }
 
+function addKmlLayerH(fileName) {
+    fetch('public/kml/' + fileName + '.kml')
+        .then(response => response.text())
+        .then(kmlText => {
+            const parser = new DOMParser();
+            let kml = parser.parseFromString(kmlText, 'text/xml');
+            let track = new L.KML(kml)
+            map.addLayer(track);
+        });
+    document.getElementById(fileName).classList.toggle('selected');
+}
+
 function moveMapTo(lat = 31.8, long = -116, zoom = 12) {
     console.log(lat, long);
     map.setView(new L.LatLng(lat, long), zoom);
