@@ -140,7 +140,8 @@ function addKmzComplete(fileName) {
             // control.addOverlay(e.layer, e.name);
             // console.log(e);
         });
-        kmz.load('public/kml/' + fileName + '.kmz');
+        console.log(polygonPoints);
+        kmz.load('public/kml/' + fileName + '.kmz',polygonPoints.geometry.coordinates[0]);
         kmzLayersList.push({
             "name": fileName,
             "kml": kmz

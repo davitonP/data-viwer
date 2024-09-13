@@ -3,6 +3,14 @@
 }(this, (function (e) {
     "use strict";
 
+    function removePlaceMarkersKmz(doc, placeMark, indexPlacemarkerToRemove) {
+        for (let i = indexPlacemarkerToRemove.length -1; i >= 0; i--) {
+            placeMark[indexPlacemarkerToRemove[i]].parentNode.removeChild(placeMark[indexPlacemarkerToRemove[i]]);
+            // doc.removeChild(placeMark[indexPlacemarkerToRemove[i]]);
+        }
+        return doc;
+    }
+
     function searchPlaceMarkersToMap(kml, polygon) {
         if (polygon == null) return;
         let indexPlacemarkerToRemove = [];
@@ -29,17 +37,15 @@
             }
         }
         
-        // console.log(indexPlacemarkerToRemove.length);
+        console.log(indexPlacemarkerToRemove.length);
         if (indexPlacemarkerToRemove.length === 0) {
-            const track = new L.KML(kml);
-            return track;
+            return kml;
         }
-        if (indexPlacemarkerToRemove.length === placeMark.length) return null;
+        if (indexPlacemarkerToRemove.length === placeMark.length) return kml;
     
-        doc = removePlaceMarkers(doc, placeMark, indexPlacemarkerToRemove);
+        doc = removePlaceMarkersKmz(doc, placeMark, indexPlacemarkerToRemove);
     
-        const track = new L.KML(kml);
-        return track;
+        return kml;
     }
 
     function t(e) {
@@ -77,7 +83,7 @@
         })
     }
 
-    function r(e) {
+    function r(e, polygon) {
         var t = e;
         if (e instanceof ArrayBuffer) {
             var o = (t = new Uint8Array(e).reduce((function (e, t) {
@@ -87,6 +93,11 @@
         }
         let doc =  t ? (new DOMParser).parseFromString(t, "text/xml") : document.implementation.createDocument(null, "kml")
         console.log(doc);
+
+        console.log(polygon);
+
+        doc = searchPlaceMarkersToMap(doc, polygon);
+
         return doc;
     }
     const a = L.KMZLayer = L.FeatureGroup.extend({
@@ -95,7 +106,8 @@
             ballon: !0,
             bindPopup: !0,
             bindTooltip: !0,
-            preferCanvas: !1
+            preferCanvas: !1,
+            polygon: null
         },
         initialize: function (e, t) {
             L.extend(this.options, t), L.Browser.mobile && (this.options.bindTooltip = !1), this._layers = {}, e && this.load(e)
@@ -103,7 +115,8 @@
         add: function (e) {
             this.load(e)
         },
-        load: function (e) {
+        load: function (e, polygon=null) {
+            this.options.polygon = polygon;
             L.KMZLayer._jsPromise = i(this._requiredJSModules(), L.KMZLayer._jsPromise).then((() => {
                 return t = e, new Promise(((e, o) => {
                     let i = new XMLHttpRequest;
@@ -150,7 +163,7 @@
             }))
         },
         _parseKML: function (e, t) {
-            var o = r(e),
+            var o = r(e, this.options.polygon),
                 i = function (e, t) {
                     var o = e instanceof XMLDocument ? e : r(e),
                         i = window.toGeoJSON.kml(o);
@@ -207,6 +220,8 @@
             return "function" != typeof window.JSZip && e.push(t + "jszip@3.5.0/dist/jszip.min.js"), "object" != typeof window.toGeoJSON && e.push(t + "@tmcw/togeojson@4.1.0/dist/togeojson.umd.js"), e
         }
     });
+
+
     L.kmzLayer = function (e, t) {
         return new L.KMZLayer(e, t)
     }, L.KMZMarker = L.CircleMarker.extend({
