@@ -52,7 +52,7 @@ const areaSelection = new window.leafletAreaSelection.DrawAreaSelection({
                 map.addLayer(track);
                 map.fitBounds(track.getBounds());
             } else {
-                alert("No hay puntos en el área seleccionada");
+                // alert("No hay puntos en el área seleccionada");
             }
         }
     },
@@ -72,8 +72,6 @@ function indexOfKmlFileInLayers(fileName) {
 
 function indexOfKmInArray(fileName, array) {
     let result = -1;
-    console.log(array);
-    console.log(fileName);
     array.forEach((layer, index) => {
         if (layer['name'] === fileName) {
             result = index;
@@ -133,15 +131,18 @@ function addKmlLayerComplete(fileName) {
 
 function addKmzComplete(fileName) {
     let ind = indexOfKmInArray(fileName, kmzLayersList)
-    console.log(ind);
+    // console.log(ind);
     if (ind == -1) {
         let kmz = L.kmzLayer().addTo(map);
         kmz.on('load', function (e) {
             // control.addOverlay(e.layer, e.name);
             // console.log(e);
         });
-        console.log(polygonPoints);
-        kmz.load('public/kml/' + fileName + '.kmz',polygonPoints.geometry.coordinates[0]);
+        if (polygonPoints == null) {
+            kmz.load('public/kml/' + fileName + '.kmz', null);
+        } else {
+            kmz.load('public/kml/' + fileName + '.kmz',polygonPoints.geometry.coordinates[0]);
+        }
         kmzLayersList.push({
             "name": fileName,
             "kml": kmz

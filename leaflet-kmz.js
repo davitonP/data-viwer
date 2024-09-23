@@ -52,7 +52,6 @@
         let doc =  e["doc.kml"] ? "doc.kml" : function (e) {
             return e.filter((e => /.*\.kml/.test(e)))
         }(Object.keys(e))[0]
-        console.log(doc);
         return doc;
     }
 
@@ -83,7 +82,7 @@
         })
     }
 
-    function r(e, polygon) {
+    function r(e, polygon=null) {
         var t = e;
         if (e instanceof ArrayBuffer) {
             var o = (t = new Uint8Array(e).reduce((function (e, t) {
@@ -92,12 +91,10 @@
             o && (t = new TextDecoder(o[1]).decode(e))
         }
         let doc =  t ? (new DOMParser).parseFromString(t, "text/xml") : document.implementation.createDocument(null, "kml")
-        console.log(doc);
 
-        console.log(polygon);
-
-        doc = searchPlaceMarkersToMap(doc, polygon);
-
+        if (polygon == null) return doc;
+        // console.log(polygon);
+        doc =   searchPlaceMarkersToMap(doc, polygon);
         return doc;
     }
     const a = L.KMZLayer = L.FeatureGroup.extend({
