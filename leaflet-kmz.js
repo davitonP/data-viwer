@@ -37,11 +37,11 @@
             }
         }
         
-        console.log(indexPlacemarkerToRemove.length);
+        // console.log(indexPlacemarkerToRemove.length);
         if (indexPlacemarkerToRemove.length === 0) {
             return kml;
         }
-        if (indexPlacemarkerToRemove.length === placeMark.length) return kml;
+        // if (indexPlacemarkerToRemove.length === placeMark.length) return null;
     
         doc = removePlaceMarkersKmz(doc, placeMark, indexPlacemarkerToRemove);
     
